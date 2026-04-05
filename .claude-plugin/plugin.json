@@ -1,21 +1,20 @@
 {
-  "name": "polyclaude",
-  "version": "0.2.0",
-  "description": "Multi-perspective council analysis. Spawns parallel cognitive perspectives to analyze questions, plans, and ideas from multiple angles with structured dialectical synthesis.",
+  "name": "council",
+  "version": "0.1.0",
+  "description": "Совет из 11 когнитивных перспектив (Наваль, Талеб, Юнг, Дон Хуан, Иисус, Шри Юктешвар, Уоттс, Рао, Balaji, Канье, Скотт Александер) для анализа решений, идей, клиентских проектов, отношений и контента.",
   "author": {
-    "name": "Riley Coyote",
-    "url": "https://github.com/Riley-Coyote"
+    "name": "Daler",
+    "url": "https://github.com/rakhmondaler"
   },
-  "homepage": "https://github.com/Riley-Coyote/polyclaude",
-  "repository": "https://github.com/Riley-Coyote/polyclaude",
   "license": "MIT",
   "keywords": [
     "multi-agent",
-    "analysis",
-    "perspectives",
     "council",
+    "perspectives",
+    "decision-making",
     "synthesis",
-    "dialectics",
-    "decision-making"
+    "naval",
+    "taleb",
+    "jung"
   ]
 }

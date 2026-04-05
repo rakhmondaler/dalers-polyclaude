@@ -1,30 +1,26 @@
 {
-  "name": "polyclaude",
+  "name": "council",
   "owner": {
-    "name": "Riley Coyote",
-    "url": "https://github.com/Riley-Coyote"
+    "name": "Daler",
+    "url": "https://github.com/rakhmondaler"
   },
   "plugins": [
     {
-      "name": "polyclaude",
+      "name": "council",
       "source": "./",
-      "description": "Spawns parallel cognitive perspectives to analyze questions, plans, and ideas from multiple angles with structured dialectical synthesis.",
-      "version": "0.2.0",
+      "description": "Совет из 11 когнитивных перспектив для анализа решений, идей, клиентских проектов, отношений и контента.",
+      "version": "0.1.0",
       "author": {
-        "name": "Riley Coyote",
-        "url": "https://github.com/Riley-Coyote"
+        "name": "Daler",
+        "url": "https://github.com/rakhmondaler"
       },
-      "homepage": "https://github.com/Riley-Coyote/polyclaude",
-      "repository": "https://github.com/Riley-Coyote/polyclaude",
       "license": "MIT",
       "keywords": [
         "multi-agent",
-        "analysis",
-        "perspectives",
         "council",
-        "synthesis",
-        "dialectics",
-        "decision-making"
+        "perspectives",
+        "decision-making",
+        "synthesis"
       ]
     }
   ]
