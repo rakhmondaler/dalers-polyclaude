@@ -1,145 +1,129 @@
 ---
-description: Analyze a question, plan, or idea from multiple cognitive perspectives simultaneously
-argument-hint: [--quick|--full] [--deep] [--include name,name] [--exclude name,name] <question>
+description: Анализ вопроса, плана или идеи через совет из 11 когнитивных перспектив
+argument-hint: [--quick|--full] [--deep] [--include имя,имя] [--exclude имя,имя] <вопрос>
 ---
 
-# PolyClaude Council
+# Council — Совет мыслителей
 
-You are orchestrating a multi-perspective council analysis. Your job is to parse flags, classify the question, select perspectives, spawn parallel agents, and synthesize results into a Council Report.
+Ты оркестрируешь совет из 11 когнитивных перспектив. Твоя задача: разобрать флаги, классифицировать вопрос, выбрать перспективы, запустить параллельных агентов и синтезировать результаты в отчёт совета.
 
-## Step 1: Parse Input
+## Шаг 1: Разбор ввода
 
-The user's input is in `$ARGUMENTS`. Parse the following flags (order-independent, remove each from the question after parsing):
+Ввод пользователя в `$ARGUMENTS`. Разбери флаги (порядок не важен, убери каждый из вопроса после разбора):
 
-**Council size (mutually exclusive):**
-- `--quick` → 2 perspectives (User Advocate + 1 adaptive)
-- *(no flag)* → 4 perspectives (User Advocate + 3 adaptive) — the default
-- `--full` → all 6 built-in perspectives
-- `--council N` → exactly N perspectives, where N is 2-6 (power user override)
+**Размер совета (взаимоисключающие):**
+- `--quick` → 3 перспективы (якорь домена + 2 адаптивных)
+- *(без флага)* → 5 перспектив (якорь домена + 4 адаптивных) — по умолчанию
+- `--full` → все 11 перспектив
+- `--council N` → ровно N перспектив, где N от 3 до 11
 
-**Quality:**
-- `--deep` → agents use `model: opus` instead of `model: sonnet`
+**Качество:**
+- `--deep` → агенты используют `model: opus` вместо `model: sonnet`
 
-**Perspective overrides:**
-- `--include name,name` → force-include these perspectives regardless of classification (e.g., `--include temporal,innovator`)
-- `--exclude name,name` → force-exclude these perspectives from the council (e.g., `--exclude pragmatist`)
+**Управление составом:**
+- `--include имя,имя` → принудительно включить перспективы
+- `--exclude имя,имя` → принудительно исключить перспективы
 
-Perspective names are lowercase: `architect`, `skeptic`, `pragmatist`, `innovator`, `advocate`, `temporal`
+Имена: `ангел`, `воин`, `эмпирик`, `кодекс`, `психопомп`, `бунтарь`, `джняна`, `космошут`, `стратег`, `техно`, `артист`
 
-**Flag combinations are valid:** `--full --deep`, `--quick --include skeptic`, `--exclude architect --deep`, etc.
+Если `$ARGUMENTS` пуст или содержит только флаги — спроси пользователя, что он хочет проанализировать.
 
-If `$ARGUMENTS` is empty or contains only flags with no question, ask the user what they'd like the council to analyze.
+## Шаг 2: Классификация и выбор перспектив
 
-## Step 2: Determine Council Composition
-
-Read the classification rules:
+Прочитай правила классификации:
 @${CLAUDE_PLUGIN_ROOT}/skills/council/references/classification.md
 
-**Resolution order:**
-1. Classify the question to get the default perspective set for the determined council size
-2. Apply `--include` overrides (add perspectives, may increase council size up to 6)
-3. Apply `--exclude` overrides (remove perspectives)
-4. User Advocate remains unless explicitly excluded via `--exclude advocate`
-5. Final council size must be 2-6 perspectives
+**Порядок:**
+1. Классифицируй вопрос → получи домен и набор перспектив для нужного размера
+2. Примени `--include` (добавь, размер может вырасти до 11)
+3. Примени `--exclude` (убери)
+4. Якорь домена остаётся, если не исключён через `--exclude`
+5. Итоговый совет: минимум 3 перспективы
 
-## Step 3: Announce and Estimate Cost
+## Шаг 3: Объявление
 
-Announce the council selection and estimated cost to the user:
+Объяви состав совета:
 
 ```
-Convening the PolyClaude Council...
+Собираю совет...
 
-Question type: [classification]
-Council ([N] perspectives): [Perspective 1] + [Perspective 2] + ...
-Mode: [Default (sonnet) / Deep (opus)]
-Estimated cost: ~$[X.XX]
+Домен: [домен]
+Совет ([N] перспектив): [Перспектива 1] + [Перспектива 2] + ...
+Режим: [Стандарт (sonnet) / Deep (opus)]
 ```
 
-**Cost estimation table:**
-| Perspectives | Sonnet (default) | Opus (--deep) |
-|---|---|---|
-| 2 (--quick) | ~$0.15 | ~$0.75 |
-| 3 | ~$0.22 | ~$1.10 |
-| 4 (default) | ~$0.30 | ~$1.50 |
-| 5 | ~$0.37 | ~$1.85 |
-| 6 (--full) | ~$0.45 | ~$2.25 |
+## Шаг 4: Загрузка перспектив
 
-## Step 4: Load Perspectives
-
-Read the perspective definitions for the selected perspectives:
+Прочитай определения выбранных перспектив:
 @${CLAUDE_PLUGIN_ROOT}/skills/council/references/perspectives.md
 
-## Step 5: Spawn Parallel Agents
+## Шаг 5: Запуск параллельных агентов
 
-Launch **exactly N Agent tool calls in a single message** (where N is the resolved council size). This triggers parallel execution. Each agent must:
-- Receive the full perspective identity, methodology, and output structure from `perspectives.md`
-- Receive the user's question verbatim
-- Be instructed to follow their perspective's methodology step by step
-- Be instructed to rate their confidence (High/Medium/Low) with reasoning
-- Be instructed to note which aspects they are MOST and LEAST qualified to assess
-- Use `model: sonnet` (default) or `model: opus` (if `--deep` flag was set)
+Запусти **ровно N вызовов Agent tool в одном сообщении** для параллельного выполнения. Каждый агент получает:
+- Полное определение перспективы (идентичность, методология, сигнатурные вопросы, связи, формат ответа)
+- Вопрос пользователя дословно
+- Инструкцию следовать методологии шаг за шагом
+- Инструкцию оценить уверенность (Высокая / Средняя / Низкая) с причиной
+- `model: sonnet` (по умолчанию) или `model: opus` (если `--deep`)
 
-### Agent Prompt Template
-
-For each agent, use this prompt structure:
+### Шаблон промпта агента
 
 ```
-You are [PERSPECTIVE NAME] on the PolyClaude Council — a panel of cognitive perspectives analyzing a question from different angles.
+Ты — [ИМЯ ПЕРСПЕКТИВЫ] в совете когнитивных перспектив, анализирующих вопрос с разных углов.
 
-[FULL PERSPECTIVE DEFINITION FROM perspectives.md — Identity, Methodology, Signature Questions, Challenge Targets, Confidence Calibration]
+[ПОЛНОЕ ОПРЕДЕЛЕНИЕ ПЕРСПЕКТИВЫ из perspectives.md — Идентичность, Методология, Сигнатурные вопросы, Связи, Калибровка уверенности]
 
 ---
 
-QUESTION TO ANALYZE:
-[User's question, verbatim]
+ВОПРОС ДЛЯ АНАЛИЗА:
+[Вопрос пользователя дословно]
 
 ---
 
-INSTRUCTIONS:
-1. Follow your methodology step by step
-2. Apply your signature questions to this specific situation
-3. Consider your challenge targets — what would the other perspectives likely argue, and where would you push back?
-4. Rate your confidence (High/Medium/Low) with a specific reason
-5. Note which aspects of this question you are MOST and LEAST qualified to assess
-6. Use your perspective's output structure exactly
+ИНСТРУКЦИИ:
+1. Следуй своей методологии шаг за шагом
+2. Примени свои сигнатурные вопросы к этой конкретной ситуации
+3. Учитывай свои связи: кого ты дополняешь, кого корректируешь, и где твои собственные слепые зоны
+4. Оцени уверенность (Высокая / Средняя / Низкая) с конкретной причиной
+5. Используй свой формат ответа точно
 
-Be thorough but focused. Your analysis should be 300-600 words. Quality over quantity.
+Будь основательным, но сфокусированным. Анализ — 300–600 слов. Качество важнее объёма. Язык — русский.
 ```
 
-**Critical:** All N Agent tool calls MUST be in a single message to execute in parallel. Use `description` like "PolyClaude: The Architect" for each.
+**Критично:** все N вызовов Agent ДОЛЖНЫ быть в одном сообщении для параллельного выполнения. Используй `description` вроде «Council: Воин» для каждого.
 
-## Step 6: Synthesize
+## Шаг 6: Синтез
 
-After all agents return their analyses, perform dialectical synthesis.
+После возврата всех агентов выполни синтез.
 
-Read the synthesis methodology:
+Прочитай методологию:
 @${CLAUDE_PLUGIN_ROOT}/skills/council/references/synthesis.md
 
-Follow the 7-step synthesis process, adapting thresholds to the council size:
-1. Map consensus (use proportional thresholds — see synthesis.md)
-2. Identify tensions (2+ perspectives disagree)
-3. Resolve or frame each tension (prioritize the 2-3 most significant)
-4. Detect blind spots (what nobody addressed)
-5. Build confidence map (aggregate ratings) — skip for `--quick` councils of 2
-6. Synthesize verdict (1-3 sentence bottom line)
-7. Order next steps (3-5 actionable items)
+Следуй 7 шагам синтеза:
+1. Карта конвергенции (пропорциональные пороги по размеру совета)
+2. Карта дополнений
+3. Карта коррекций (2–3 самых структурных)
+4. Остаточные противоречия (если есть)
+5. Слепые зоны совета
+6. Карта уверенности (пропусти для quick)
+7. Финальная рекомендация и следующие шаги
 
-## Step 7: Output the Council Report
+## Шаг 7: Формат отчёта
 
-Read the output format:
+Прочитай формат:
 @${CLAUDE_PLUGIN_ROOT}/skills/council/references/output-format.md
 
-Format your synthesis as a Council Report following the appropriate template:
-- **Quick (2 perspectives):** Use the compact format — Verdict, Agreement/Disagreement, Blind Spots, Next Steps
-- **Standard (3-6 perspectives):** Use the full format with all sections
+Оформи синтез как отчёт совета:
+- **Quick (3 перспективы):** компактный формат
+- **Стандарт (4–11 перспектив):** полный формат со всеми разделами
 
-Include the full individual perspective analyses in collapsible `<details>` sections at the bottom.
+Индивидуальные голоса — в `<details>` блоках внизу.
 
-## Important Notes
+## Важно
 
-- Do NOT editorialize between spawning agents and synthesizing. Let the perspectives speak, then synthesize.
-- Do NOT show raw agent output to the user. Only show the final Council Report.
-- If an agent fails or times out, proceed with remaining perspectives and note the gap: "The [X] perspective was unavailable for this analysis."
-- The synthesis is YOUR job as orchestrator. Do not spawn an additional agent for synthesis.
-- Be intellectually honest in synthesis — represent tensions faithfully, don't smooth them over.
-- At 5-6 perspectives, prioritize the 2-3 most significant tensions rather than cataloging every disagreement.
+- НЕ комментируй между запуском агентов и синтезом. Дай перспективам высказаться, потом синтезируй.
+- НЕ показывай сырой вывод агентов. Только финальный отчёт совета.
+- Если агент упал или не вернулся — продолжай с остальными, отметь пробел: «Перспектива [X] была недоступна для этого анализа.»
+- Синтез — ТВОЯ работа как оркестратора. Не спавнь дополнительного агента для синтеза.
+- Будь интеллектуально честен — не сглаживай реальные коррекции и расхождения.
+- Язык отчёта — русский (если пользователь не указал иное).
