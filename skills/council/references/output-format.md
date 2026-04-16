@@ -1,161 +1,185 @@
-# Council Report Output Format
+# Формат отчёта совета
 
-Choose the format based on council size.
+Выбери формат в зависимости от размера совета.
 
 ---
 
-## Quick Format (2 perspectives)
-
-Use this compact format for `--quick` councils.
+## Компактный формат (3 перспективы, --quick)
 
 ```markdown
-## Council Report: [Concise Title]
+## Совет: [Краткий заголовок]
 
-**Question:** [Original question, verbatim]
-**Council:** [2 perspective names]
-**Mode:** [Quick / Quick Deep]
-
----
-
-### Verdict
-
-[1-3 sentence bottom-line recommendation.]
+**Вопрос:** [Вопрос пользователя дословно]
+**Домен:** [Домен]
+**Совет (3):** [Перспектива 1] + [Перспектива 2] + [Перспектива 3]
 
 ---
 
-### Analysis
+### Вердикт
 
-**Agreement:**
-[What both perspectives agree on]
-
-**Disagreement:**
-[Where they diverge, with each side's reasoning]
+[1–3 предложения. Конкретная рекомендация. Без «всё зависит от» — если зависит, скажи от чего.]
 
 ---
 
-### Blind Spots
+### Конвергенция
 
-- [What neither perspective addressed]
+[В чём все три согласны, несмотря на разные методы.]
 
----
+### Коррекция
 
-### Recommended Next Steps
-
-1. [Action 1]
-2. [Action 2]
+[Где одна перспектива поправляет слепую зону другой.]
 
 ---
 
-### Individual Perspectives
+### Слепые зоны
+
+- [Что совет не видит про этот вопрос]
+
+---
+
+### Следующие шаги
+
+1. [Действие 1]
+2. [Действие 2]
+3. [Действие 3]
+
+---
+
+### Голоса
 
 <details>
-<summary>[Perspective 1]'s Analysis</summary>
+<summary>[Перспектива 1]</summary>
 
-[Full analysis]
+[Полный анализ в формате этой перспективы]
 
 </details>
 
 <details>
-<summary>[Perspective 2]'s Analysis</summary>
+<summary>[Перспектива 2]</summary>
 
-[Full analysis]
+[Полный анализ]
+
+</details>
+
+<details>
+<summary>[Перспектива 3]</summary>
+
+[Полный анализ]
 
 </details>
 ```
 
 ---
 
-## Standard Format (3-6 perspectives)
-
-Use this full format for default, `--full`, and custom council sizes.
+## Стандартный формат (4–11 перспектив)
 
 ```markdown
-## Council Report: [Concise Title Derived from the Question]
+## Совет: [Краткий заголовок, отражающий суть вопроса]
 
-**Question:** [The user's original question, verbatim]
-**Council ([N] perspectives):** [Names of all selected perspectives]
-**Mode:** [Default / Deep / Full / Full Deep]
-
----
-
-### Verdict
-
-[1-3 sentence bottom-line recommendation. Actionable. No hedging without specifying what the decision depends on. This is what someone reads if they only have 10 seconds.]
+**Вопрос:** [Вопрос пользователя дословно]
+**Домен:** [Домен]
+**Совет ([N] перспектив):** [Имена всех выбранных перспектив]
+**Режим:** [Стандарт / Deep]
 
 ---
 
-### Consensus Points
+### Вердикт
 
-[Findings where a strong majority of perspectives agreed. Bulleted list. These are the safest bets.]
-
-- [Point 1]
-- [Point 2]
-- [Point 3]
+[1–3 предложения. Конкретная, действенная рекомендация. Учитывает сильнейшие аргументы и главную коррекцию. Читатель с 10 секундами получает суть.]
 
 ---
 
-### Key Tensions
+### Конвергенция
 
-[For each meaningful disagreement between perspectives — limit to 2-3 most significant:]
+[Выводы, к которым разные методы пришли независимо. Сильнейший сигнал совета.]
 
-**Tension: [Value A] vs. [Value B]**
-- **[Perspective 1]** argues: [their position and reasoning]
-- **[Perspective 2]** counters: [their position and reasoning]
-- **Resolution:** [Synthesized recommendation, or "Genuine trade-off — choose based on whether you prioritize [X] or [Y]"]
-
-[Repeat for each significant tension.]
+- [Точка 1]
+- [Точка 2]
+- [Точка 3]
 
 ---
 
-### Blind Spots
+### Дополнения
 
-[What no perspective addressed. These are not criticisms — they are unexplored territories that could change the recommendation.]
+[Как перспективы усиливают друг друга, добавляя разные измерения.]
 
-- [Blind spot 1]
-- [Blind spot 2]
-
----
-
-### Confidence Map
-
-| Aspect | Confidence | Signal |
-|--------|-----------|--------|
-| [Aspect 1] | High / Medium / Low | [Why — e.g., "Strong majority agrees" or "Divergent views"] |
-| [Aspect 2] | High / Medium / Low | [Why] |
-| [Aspect 3] | High / Medium / Low | [Why] |
+- **[Перспектива A]** добавляет: [что видит этот метод, чего не видят другие]
+- **[Перспектива B]** добавляет: [другое измерение]
 
 ---
 
-### Recommended Next Steps
+### Коррекции
 
-1. [Most urgent / highest confidence action]
-2. [Action that resolves the most uncertainty]
-3. [Action informed by the key tension]
-4. [Optional: longer-term action]
+[Где одна перспектива вытаскивает другую из слепой зоны. Не атака — поправка.]
+
+**[Перспектива X] → [Перспектива Y]:** [мягкая/жёсткая]
+- [Перспектива Y] склонна к [слепая зона], но [Перспектива X] показывает, что [коррекция]
+
+[Повторить для 2–3 ключевых коррекций.]
 
 ---
 
-### Individual Perspectives
+### Остаточные противоречия
+
+[Если есть неразрешённые расхождения после коррекций.]
+
+- **Ситуативное / Ценностное / Фундаментальное:** [описание]
+- Если приоритет [X] — тогда [вывод A]. Если приоритет [Y] — тогда [вывод B].
+
+*Если противоречий нет — пропусти этот раздел.*
+
+---
+
+### Слепые зоны совета
+
+[Что ни одна перспектива не затронула. Неисследованная территория, которая может изменить рекомендацию.]
+
+- [Слепая зона 1]
+- [Слепая зона 2]
+
+---
+
+### Карта уверенности
+
+| Аспект | Уверенность | Сигнал |
+|--------|------------|--------|
+| [Аспект 1] | Высокая / Средняя / Низкая | [Почему — «сильная конвергенция» или «расхождение»] |
+| [Аспект 2] | Высокая / Средняя / Низкая | [Почему] |
+| [Аспект 3] | Высокая / Средняя / Низкая | [Почему] |
+
+---
+
+### Следующие шаги
+
+1. [Самое срочное / высокоуверенное действие]
+2. [Действие, снимающее максимум неопределённости]
+3. [Действие, учитывающее главную коррекцию]
+4. [Опционально: долгосрочное действие]
+
+---
+
+### Голоса
 
 <details>
-<summary>The User Advocate's Analysis</summary>
+<summary>[Перспектива 1]</summary>
 
-[Full analysis from the User Advocate agent]
+[Полный анализ в формате этой перспективы]
 
 </details>
 
-[Repeat <details> block for each perspective in the council]
+[Повторить <details> блок для каждой перспективы в совете]
 ```
 
 ---
 
-## Formatting Guidelines
+## Правила форматирования
 
-- Use **bold** for perspective names, tension labels, and key terms
-- Use tables for the confidence map (easy to scan)
-- Use `<details>` tags for individual perspectives (keeps the report scannable while preserving full analysis)
-- Keep the Verdict under 50 words
-- Keep Consensus Points to 3-5 bullets max
-- Keep Blind Spots to 2-4 items (quality over quantity)
-- Next Steps should be concrete enough to act on immediately
-- At 5-6 perspectives, do not list every individual disagreement — surface only structurally significant tensions
+- **Жирный** для имён перспектив, меток коррекций и ключевых терминов
+- Таблицы для карты уверенности
+- `<details>` для индивидуальных голосов (отчёт остаётся сканируемым, полный анализ доступен)
+- Вердикт — до 50 слов
+- Конвергенция — 3–5 пунктов максимум
+- Слепые зоны — 2–4 пункта (качество, не количество)
+- Следующие шаги — конкретные, можно действовать сразу
+- При 7+ перспективах — не перечисляй все коррекции, только 2–3 структурных
+- Язык отчёта — **русский** (если пользователь не указал иное)

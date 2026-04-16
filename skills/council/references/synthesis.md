@@ -1,84 +1,91 @@
-# Dialectical Synthesis Methodology
+# Методология синтеза совета
 
-This is not summarization. This is synthesis — finding the signal in the noise, the tensions beneath the agreement, and the gaps nobody noticed.
+Это не пересказ. Это синтез — поиск сигнала в шуме, точек конвергенции между разнородными методами, коррекций слепых зон и того, что совет не может увидеть вообще.
 
-## Adapting to Council Size
+## Трёхслойная система связей
 
-The synthesis process adapts based on how many perspectives participated:
+Совет использует три типа связей между перспективами (вместо бинарных оппозиций):
 
-- **2 perspectives (quick):** Skip consensus thresholds. Report agreement or disagreement directly. Focus on the single most important tension and blind spots. No Confidence Map.
-- **3-4 perspectives (standard):** Full synthesis. Consensus = all or all-but-one agree. Tensions = any 2 perspectives meaningfully disagree.
-- **5-6 perspectives (full):** Full synthesis with proportional thresholds. Consensus = >60% agree. Prioritize the 2-3 most significant tensions rather than cataloging every disagreement.
+1. **Совпадения (Convergence)** — разные методы, одинаковый вывод. Сильнейший сигнал. Если Воин через тест смертью и Ангел-инвестор через via negativa приходят к одному — это стоит слушать.
+2. **Дополнения (Complement)** — разные измерения одной истины. Не противоречат, а добавляют то, что другой метод не видит. Психопомп видит тень, Кодекс видит ближнего — вместе полнее.
+3. **Коррекции (Correction)** — одна перспектива вытаскивает другую из слепой зоны. Не атака, а поправка. Кодекс корректирует Стратега-социопата, когда оптимизация забывает спросить «кто расплатится?».
 
-## The 7-Step Synthesis Process
+## Адаптация к размеру совета
 
-### Step 1: Map Consensus
-Identify findings where a **strong majority of perspectives agree**.
+- **3 перспективы (quick):** Конвергенция = все 3 согласны. Достаточно 1 коррекции. Без карты уверенности. Компактный формат.
+- **4–6 перспектив (стандарт):** Полный синтез. Конвергенция = большинство согласно. 2–3 ключевые коррекции.
+- **7–11 перспектив (full):** Полный синтез с приоритизацией. Конвергенция = >60% согласны. Максимум 3 самых структурных коррекции, не каталогизируй каждое расхождение.
 
-**Proportional thresholds:**
-- 2 perspectives: both agree
-- 3 perspectives: all 3 agree
-- 4 perspectives: 3+ agree
-- 5 perspectives: 3+ agree
-- 6 perspectives: 4+ agree (>60%)
+## 7 шагов синтеза
 
-State consensus points clearly and concisely. Consensus doesn't mean certainty — note if the agreement is substantive ("we all analyzed this and reached the same conclusion") or superficial ("nobody challenged this assumption").
+### Шаг 1: Карта конвергенции
+Где разные методы привели к одному выводу?
 
-### Step 2: Identify Tensions
-Find where **2 or more perspectives meaningfully disagree**. For each tension:
-- Name the underlying **values in conflict** (e.g., "speed vs. correctness", "simplicity vs. flexibility", "user experience vs. technical elegance")
-- State each side's argument with intellectual honesty — represent both positions as strongly as their advocates would
-- Do NOT immediately resolve — first ensure the tension is clearly understood
+**Пороги:**
+- 3 перспективы: все 3 согласны
+- 4–5 перспектив: 3+ согласны
+- 6–8 перспектив: 4+ согласны (>60%)
+- 9–11 перспектив: 6+ согласны (>55%)
 
-**At 5-6 perspectives:** Many pairwise disagreements are possible. Focus on tensions that are **structurally important** — disagreements about core values or approach, not surface-level differences. Limit to the 2-3 most significant tensions.
+Различай **содержательное** согласие («мы все проанализировали и пришли к одному») от **поверхностного** («никто это не оспорил, потому что это не в фокусе их метода»).
 
-### Step 3: Resolve or Frame Tensions
-For each tension identified in Step 2, determine:
-- **Resolvable:** Is this a false dichotomy? Can both values be satisfied with a different framing? If so, propose the resolution.
-- **Genuine trade-off:** Must one value be prioritized over the other? If so, state the trade-off clearly: "If you prioritize X, you accept Y. If you prioritize Z, you accept W." Let the user decide based on their priorities.
-- **Context-dependent:** Does the right answer depend on information you don't have? If so, name the information needed and how it would change the recommendation.
+### Шаг 2: Карта дополнений
+Как перспективы усиливают друг друга?
 
-### Step 4: Detect Blind Spots
-This is the most valuable step. Review the original question and ask:
-- What aspects of the problem did **no perspective address**?
-- What **assumptions went unchallenged** across all perspectives?
-- What **stakeholders or affected parties** were not considered?
-- What **failure modes** were not explored?
-- What **time horizons** were not examined?
+Найди случаи, где разные голоса освещают разные стороны одного ответа. Не противоречия — разные измерения. Пример: Ангел-инвестор видит рычаг, Воин видит путь с сердцем, Эмпирический исследователь видит хрупкость. Вместе — объёмная картина.
 
-Name these blind spots explicitly. A blind spot doesn't mean the analysis is wrong — it means there's unexplored territory that could change the recommendation.
+Структурируй как: «[Перспектива A] добавляет измерение [X], которое [Перспектива B] не покрывает».
 
-### Step 5: Build Confidence Map
-**Skip this step for 2-perspective (quick) councils.**
+### Шаг 3: Карта коррекций
+Где одна перспектива вытаскивает другую из слепой зоны?
 
-For each major aspect of the question, aggregate the perspectives' confidence ratings using proportional logic:
-- **High confidence:** A strong majority rated this area High, with no Low ratings
-- **Medium confidence:** Mixed ratings, or only a minority of perspectives addressed this
-- **Low confidence:** Any perspective rated Low, or significant disagreement exists
-- **Unknown:** No perspective addressed this area (a blind spot)
+Для каждой коррекции:
+- Назови **что** корректируется (конкретный вывод или рамка)
+- Назови **кто** корректирует и **как**
+- Определи тип: **мягкая** (нюанс, который стоит учесть) или **жёсткая** (слепая зона, которая может привести к ошибке)
 
-Present as a table for quick scanning.
+**При 7+ перспективах:** фокусируйся на 2–3 самых структурных коррекциях, которые реально меняют рекомендацию.
 
-### Step 6: Synthesize Verdict
-Write a 1-3 sentence bottom-line recommendation that:
-- Accounts for the strongest arguments from each perspective
-- Acknowledges the most important tension and how to navigate it
-- Is actionable — the reader should know what to DO, not just what to THINK
+### Шаг 4: Остаточные противоречия
+Если после коррекций остались неразрешённые расхождения — квалифицируй их:
 
-Do not hedge with "it depends" without specifying what it depends ON.
+- **Ситуативное:** зависит от информации, которой у совета нет. Назови, что нужно знать.
+- **Ценностное:** реальный выбор между двумя ценностями. Сформулируй: «Если приоритет X — тогда [вывод A]. Если приоритет Y — тогда [вывод B]». Дай пользователю решить.
+- **Фундаментальное:** разные картины мира, которые нельзя примирить рационально. Обозначь честно.
 
-### Step 7: Order Next Steps
-Propose 3-5 concrete next steps, ordered by:
-1. Urgency (what must happen first?)
-2. Confidence (start with high-confidence actions)
-3. Information value (what action would resolve the most uncertainty?)
+### Шаг 5: Слепые зоны совета
+Самый ценный шаг. Просмотри исходный вопрос и спроси:
 
-Each step should be specific enough that someone could act on it immediately.
+- Какие аспекты проблемы **ни одна перспектива не затронула**?
+- Какие **допущения не были оспорены** ни одним голосом?
+- Какие **люди или стороны** не были учтены?
+- Какие **временные горизонты** не были рассмотрены?
+- Где **формат вопроса** мог исказить ответы? (вопрос «стоит ли X?» предполагает бинарный ответ, хотя реальность может быть шире)
 
-## Anti-Patterns to Avoid
+### Шаг 6: Карта уверенности
+**Пропусти для quick-совета (3 перспективы).**
 
-- **Summarization masquerading as synthesis:** "The Architect said X, The Skeptic said Y, The Pragmatist said Z" is a summary, not a synthesis. Find the connections, tensions, and emergent insights.
-- **False balance:** Not all perspectives are equally relevant to every question. Give more weight to the perspectives whose expertise is most applicable.
-- **Premature consensus:** Don't smooth over genuine disagreements. Tensions are information.
-- **Missing the meta-pattern:** Sometimes the most important insight is about the SHAPE of the disagreement, not its content. If the Architect and Pragmatist always disagree, that itself reveals something about the problem's nature.
-- **Tension overload (5-6 perspectives):** With more perspectives, resist the urge to catalog every disagreement. Surface the 2-3 tensions that actually matter for the decision at hand.
+Для каждого ключевого аспекта вопроса агрегируй оценки:
+- **Высокая:** сильное большинство оценило High, нет Low
+- **Средняя:** смешанные оценки, или малая часть совета адресовала этот аспект
+- **Низкая:** хотя бы одна Low, или значительное расхождение
+- **Неизвестно:** никто не адресовал (слепая зона)
+
+### Шаг 7: Финальная рекомендация и шаги
+Собери вердикт (1–3 предложения):
+- Учитывай сильнейшие аргументы из каждой перспективы
+- Признай главную коррекцию и как её учесть
+- Будь конкретным — читатель должен знать, что **делать**, а не только что думать
+
+Предложи 3–5 следующих шагов, упорядоченных по:
+1. Срочности
+2. Уверенности (начинай с высокоуверенных)
+3. Информационной ценности (что снимет больше всего неопределённости?)
+
+## Анти-паттерны
+
+- **Пересказ вместо синтеза:** «Воин сказал X, Ангел-инвестор сказал Y» — это пересказ. Ищи связи, коррекции, эмерджентные инсайты.
+- **Ложный баланс:** не все перспективы одинаково релевантны каждому вопросу. Давай больше веса тем, чья экспертиза ближе к теме.
+- **Преждевременный консенсус:** не сглаживай реальные расхождения. Коррекции — это информация.
+- **Каталогизация вместо приоритизации:** при 7+ перспективах не перечисляй все попарные расхождения. Найди 2–3 структурных.
+- **Мета-паттерн:** иногда самый важный инсайт — в **форме** расхождения, а не в его содержании. Если Кодекс и Стратег-социопат всегда расходятся по этому вопросу — сам этот факт говорит о природе проблемы.

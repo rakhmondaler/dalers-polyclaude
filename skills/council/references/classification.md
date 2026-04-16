@@ -1,90 +1,86 @@
-# Question Classification & Perspective Routing
+# Классификация вопроса и выбор перспектив
 
-## How to Classify
+## Как классифицировать
 
-Read the user's question and match it against the categories below. Use the **signal words** and **intent patterns** to determine the best fit. If the question spans multiple categories, choose the one that best captures the user's primary need. When uncertain, default to **General/Unknown**.
+Прочитай вопрос пользователя и определи его **основной домен** по маркерам ниже. Если вопрос касается нескольких доменов, выбери тот, который лучше отражает первичную потребность. При неясности — используй домен **Общий**.
 
-## Council Size
+## Размер совета
 
-The number of perspectives depends on the user's flags:
-
-| Flag | Council Size | Selection Method |
+| Флаг | Размер | Метод выбора |
 |---|---|---|
-| `--quick` | 2 | User Advocate + 1 most relevant |
-| *(default)* | 4 | User Advocate + 3 adaptive |
-| `--full` | 6 | All perspectives |
-| `--council N` | N (2-6) | User Advocate + (N-1) adaptive |
+| `--quick` | 3 | Якорь домена + 2 адаптивных |
+| *(по умолчанию)* | 5 | Якорь домена + 4 адаптивных |
+| `--full` | все 11 | Все перспективы |
+| `--council N` | N (3–11) | Якорь домена + (N-1) адаптивных |
 
-## Classification Table
+## Домены и маркеры
 
-### Architecture / Design
-**Signals:** "structure", "design", "build", "system", "architecture", "schema", "API", "database", "microservice", "monolith", "component", "module", "layer"
-**Intent:** How should something be structured or organized?
-**Relevance order:** Architect > Skeptic > Pragmatist > Temporal Analyst > Innovator
+### Жизнь / Карьера
+**Маркеры:** «стоит ли мне», «уволиться», «карьера», «переезд», «оффер», «выбор», «смена направления», «призвание», «чем заниматься», «выгорание», «мотивация», «баланс», «цель жизни», «деньги vs. смысл», «свобода», «зависимость», «рутина», «амбиции»
+**Интент:** Личное решение о направлении жизни, карьерном шаге или внутреннем состоянии.
+**Якорь:** Воин
+**Порядок релевантности:** Воин → Ангел-инвестор → Психопомп → Джняна-йоги → Эмпирический исследователь → Кодекс → Космо-шут → Стратег-социопат → Бунтарь → Техно-оптимист → Биполярный артист
 
-### Strategy / Direction
-**Signals:** "should we", "roadmap", "direction", "pivot", "bet on", "invest in", "long-term", "vision", "compete", "differentiate", "market"
-**Intent:** Which path should we take? What should we commit to?
-**Relevance order:** Architect > Innovator > Temporal Analyst > Skeptic > Pragmatist
+### Клиентские проекты
+**Маркеры:** «клиент», «проект», «план», «стратегия», «продукт», «запуск», «рынок», «аудитория», «конкуренты», «MVP», «оффер», «ценообразование», «масштабирование», «позиционирование», «воронка», «бизнес-модель», «unit economics», «growth», «retention», «канал»
+**Интент:** Анализ клиентского проекта, бизнес-идеи, стратегии, плана или продукта.
+**Якорь:** Ангел-инвестор
+**Порядок релевантности:** Ангел-инвестор → Эмпирический исследователь → Стратег-социопат → Техно-оптимист → Бунтарь → Биполярный артист → Воин → Космо-шут → Кодекс → Психопомп → Джняна-йоги
 
-### User Experience
-**Signals:** "UX", "users", "onboarding", "adoption", "usability", "interface", "experience", "friction", "flow", "journey", "accessibility"
-**Intent:** How will people experience or interact with this?
-**Relevance order:** Skeptic > Pragmatist > Innovator > Temporal Analyst > Architect
+### Отношения
+**Маркеры:** «отношения», «конфликт», «доверие», «обида», «граница», «манипуляция», «близость», «партнёр», «друг», «коллега», «семья», «расставание», «зависимость», «контроль», «предательство», «прощение», «ревность», «одиночество», «токсичность», «команда»
+**Интент:** Анализ отношений с конкретным человеком, динамики в паре/группе, межличностного конфликта.
+**Якорь:** Кодекс
+**Порядок релевантности:** Кодекс → Психопомп → Воин → Джняна-йоги → Космо-шут → Стратег-социопат → Ангел-инвестор → Бунтарь → Эмпирический исследователь → Биполярный артист → Техно-оптимист
 
-### Risk Assessment
-**Signals:** "risk", "danger", "concern", "worry", "vulnerability", "threat", "downside", "failure", "worst case", "what could go wrong"
-**Intent:** What are the dangers and how do we mitigate them?
-**Relevance order:** Skeptic > Temporal Analyst > Architect > Pragmatist > Innovator
+### Контент
+**Маркеры:** «пост», «статья», «видео», «подкаст», «контент», «тема», «идея для», «текст», «заголовок», «нарратив», «аудитория», «формат», «креатив», «сценарий», «рассылка», «лендинг», «бренд», «тональность», «визуал», «стиль»
+**Интент:** Анализ, разработка или оценка контента: пост, статья, видео, сценарий, бренд-нарратив.
+**Якорь:** Биполярный артист
+**Порядок релевантности:** Биполярный артист → Бунтарь → Стратег-социопат → Космо-шут → Ангел-инвестор → Техно-оптимист → Воин → Эмпирический исследователь → Кодекс → Психопомп → Джняна-йоги
 
-### Innovation / Ideation
-**Signals:** "new idea", "what if", "brainstorm", "explore", "creative", "alternative", "novel", "rethink", "reimagine", "disrupt", "experiment"
-**Intent:** Generate new possibilities or challenge existing approaches
-**Relevance order:** Innovator > Architect > Skeptic > Temporal Analyst > Pragmatist
+### Общий / Неопределённый
+**Маркеры:** (нет явного совпадения с доменами выше)
+**Интент:** Широкий анализ, философский вопрос или мультидоменная ситуация.
+**Якорь:** Ангел-инвестор
+**Порядок релевантности:** Ангел-инвестор → Воин → Эмпирический исследователь → Психопомп → Бунтарь → Кодекс → Стратег-социопат → Космо-шут → Джняна-йоги → Техно-оптимист → Биполярный артист
 
-### Planning / Execution
-**Signals:** "plan", "timeline", "roadmap", "execute", "implement", "phase", "milestone", "sprint", "ship", "deliver", "prioritize", "sequence"
-**Intent:** How should we order, schedule, or execute this work?
-**Relevance order:** Temporal Analyst > Pragmatist > Architect > Skeptic > Innovator
+## Алгоритм выбора перспектив
 
-### General / Unknown
-**Signals:** (no clear category match)
-**Intent:** Broad analysis needed
-**Relevance order:** Architect > Skeptic > Pragmatist > Innovator > Temporal Analyst
+1. Классифицируй вопрос → получи домен и порядок релевантности.
+2. Начни с **якоря домена** (всегда включён, если не исключён через `--exclude`).
+3. Заполняй оставшиеся слоты из порядка релевантности, сверху вниз, пока не достигнешь нужного размера совета.
+4. Примени `--include`: добавь названные перспективы, если ещё не выбраны (размер может вырасти до 11 максимум).
+5. Примени `--exclude`: убери названные перспективы из совета.
+6. Итоговый совет: минимум 3 перспективы.
 
-## Perspective Selection Algorithm
+Имена перспектив для флагов (в кириллице или латинской транслитерации):
+`ангел` / `воин` / `эмпирик` / `кодекс` / `психопомп` / `бунтарь` / `джняна` / `космошут` / `стратег` / `техно` / `артист`
 
-1. Classify the question to determine the relevance order
-2. Start with User Advocate (always included unless `--exclude advocate`)
-3. Fill remaining slots from the relevance order, top to bottom, until council size is reached
-4. Apply `--include` overrides: add named perspectives if not already selected (may push council size up to 6 max)
-5. Apply `--exclude` overrides: remove named perspectives from the council
-6. Ensure final council has at least 2 perspectives
+## Примеры
 
-### Examples
+**`/council Стоит ли мне уходить с работы ради своего проекта?`**
+→ Жизнь/Карьера. По умолчанию (5). Совет: Воин + Ангел-инвестор + Психопомп + Джняна-йоги + Эмпирический исследователь
 
-**`/polyclaude Should we use Redis or Postgres for sessions?`**
-→ Architecture. Default (4). Council: User Advocate + Architect + Skeptic + Pragmatist
+**`/council --quick Какой оффер выбрать для клиента?`**
+→ Клиентские проекты. Quick (3). Совет: Ангел-инвестор + Эмпирический исследователь + Стратег-социопат
 
-**`/polyclaude --quick Should we use Redis or Postgres?`**
-→ Architecture. Quick (2). Council: User Advocate + Architect
+**`/council --full Как мне разобраться с этим конфликтом с партнёром?`**
+→ Отношения. Full (11). Совет: все 11 перспектив.
 
-**`/polyclaude --full Should we use Redis or Postgres?`**
-→ Architecture. Full (6). Council: User Advocate + Architect + Skeptic + Pragmatist + Temporal Analyst + Innovator
+**`/council --include артист Какой контент-план на месяц?`**
+→ Контент. По умолчанию (5). Артист уже якорь, так что +1: Биполярный артист + Бунтарь + Стратег-социопат + Космо-шут + Ангел-инвестор (5 — артист и так включён).
 
-**`/polyclaude --include temporal Should we use Redis or Postgres?`**
-→ Architecture. Default (4) + forced include. Council: User Advocate + Architect + Skeptic + Pragmatist + Temporal Analyst (5 total)
+**`/council --exclude воин Куда двигаться дальше в карьере?`**
+→ Жизнь/Карьера. По умолчанию (5), якорь исключён. Совет: Ангел-инвестор + Психопомп + Джняна-йоги + Эмпирический исследователь + Кодекс (следующие по релевантности).
 
-**`/polyclaude --exclude architect What's our mobile strategy?`**
-→ Strategy. Default (4) minus Architect. Council: User Advocate + Innovator + Temporal Analyst + Skeptic (4 total — next in relevance order fills the gap)
+## Вывод классификации
 
-## Classification Output
-
-After resolving, state:
+После выбора — объяви:
 
 ```
-Question Type: [category]
-Council ([N] perspectives): [Perspective 1] + [Perspective 2] + ...
+Домен: [домен]
+Совет ([N] перспектив): [Перспектива 1] + [Перспектива 2] + ...
 ```
 
-Then proceed to spawn the selected perspectives.
+Затем переходи к спавну перспектив.
