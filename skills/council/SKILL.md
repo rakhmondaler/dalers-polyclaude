@@ -1,6 +1,6 @@
 ---
 name: council
-description: This skill should be used when the user asks about "multi-perspective analysis", "multiple viewpoints", "council deliberation", "совет мыслителей", "разные перспективы", "проанализируй с разных сторон", "stress test", "red team", "poke holes", or wants to analyze a question from multiple cognitive angles simultaneously.
+description: Совет из 11 когнитивных перспектив — анализ решений, клиентских проектов, отношений и контента с разных сторон, с синтезом и вердиктом. Триггеры — «совет мыслителей», «проанализируй с разных сторон», «разные перспективы», «stress test», «red team», «multi-perspective analysis».
 version: 1.0.0
 ---
 

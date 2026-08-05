@@ -9,7 +9,7 @@
       "name": "council",
       "source": "./",
       "description": "Совет из 11 когнитивных перспектив для анализа решений, идей, клиентских проектов, отношений и контента.",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "author": {
         "name": "Daler",
         "url": "https://github.com/rakhmondaler"
