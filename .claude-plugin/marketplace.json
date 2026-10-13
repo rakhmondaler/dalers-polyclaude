@@ -1,5 +1,6 @@
 {
   "name": "council",
+  "description": "Личный маркетплейс Далера: совет из 11 когнитивных перспектив для Claude Code.",
   "owner": {
     "name": "Daler",
     "url": "https://github.com/rakhmondaler"
@@ -9,7 +10,7 @@
       "name": "council",
       "source": "./",
       "description": "Совет из 11 когнитивных перспектив для анализа решений, идей, клиентских проектов, отношений и контента.",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "author": {
         "name": "Daler",
         "url": "https://github.com/rakhmondaler"
